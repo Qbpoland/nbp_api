@@ -1,8 +1,5 @@
-// Importujemy wymagane moduły
 const express = require('express');
 const axios = require('axios');
-
-// Tworzymy aplikację Express
 const app = express();
 const port = 3000;
 
@@ -23,7 +20,7 @@ async function fetchCurrencyRates() {
       rates[rate.code] = rate.mid;
     });
 
-    // Aktualizujemy zmienne z kursami i czasem odświeżenia
+    // Aktualizuje zmienne z kursami i czasem odświeżenia
     currencyRates = rates;
     lastRefreshTime = new Date();
     console.log('Dane kursów odświeżone.');
@@ -50,21 +47,21 @@ app.use(checkDataFreshness);
 
 // Endpointy dla kursów walut
 app.get('/dolar', (req, res) => {
-  // Zwracamy kurs dolara w formacie JSON
+ 
   res.json(currencyRates['USD']);
 });
 
 app.get('/euro', (req, res) => {
-  // Zwracamy kurs euro w formacie JSON
+  
   res.json(currencyRates['EUR']);
 });
 
 app.get('/funt', (req, res) => {
-  // Zwracamy kurs funta szterlinga w formacie JSON
+  
   res.json(currencyRates['GBP']);
 });
 
-// Startujemy serwer na określonym porcie
+// Startujemy serwer na porcie 3000
 app.listen(port, () => {
   console.log(`Serwer nasłuchuje na porcie ${port}`);
 });
